@@ -28,6 +28,9 @@ protected:
 	UPROPERTY(BlueprintReadWrite)
 		bool GetPowerUp;
 
+	UPROPERTY(BlueprintReadWrite)
+		bool IncreaseDamage;
+
 
 public:	
 
@@ -36,11 +39,18 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 		bool IsUnablePowerUp;
 
+	UPROPERTY(BlueprintReadWrite)
+		bool IsIncreaseDamagePressed;
+
 
 	UFUNCTION(BlueprintPure)
 	 float GetPercentHealth() const;
 
+	float GetHealth();
 
+	void setHealth(float health);
+
+	void setDamage(float Damage);
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

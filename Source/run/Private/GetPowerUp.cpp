@@ -16,6 +16,7 @@ UGetPowerUp::UGetPowerUp()
 
 bool UGetPowerUp::UnablePowerUp()
 {
+
 	auto Actor = GetWorld()->GetFirstPlayerController();
 	if (!Actor) { return false; }
 	if (PowerUpPlate->IsOverlappingActor(Actor)) {

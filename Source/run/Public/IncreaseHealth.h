@@ -7,6 +7,10 @@
 #include "IncreaseHealth.generated.h"
 
 class ATriggerVolume;
+class AMain_Character;
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPressurePlateEvent);
+
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class RUN_API UIncreaseHealth : public UActorComponent
@@ -25,10 +29,24 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	void IncreaseHelth();
+
+	bool getPressed();
+
+	UPROPERTY(BlueprintAssignable)
+		FPressurePlateEvent OnPressurePlatePressed;
+
+
+
 private:
 	UPROPERTY(EditAnywhere)
-		ATriggerVolume* PressurePlate;
+		ATriggerVolume* Health_plate;
 
-	bool Ispressured();
+
+	AMain_Character* PlayerRef;
+	UPROPERTY(VisibleAnywhere)
+		bool pressed = false;
+
+	void Ispressured();
 		
 };

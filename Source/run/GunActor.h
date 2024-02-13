@@ -27,6 +27,11 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	float GetDamage();
+
+	UPROPERTY(EditAnywhere)
+		float Damage = 10;
+
 private:
 	UPROPERTY(VisibleAnywhere)
 		USceneComponent* Root;
@@ -49,8 +54,7 @@ private:
 	UPROPERTY(EditAnywhere)
 		UParticleSystem* ImpactEffect;
 
-	UPROPERTY(EditAnywhere)
-		float Damage = 10;
+	
 
 	bool GunTrace(FHitResult& Hit, FVector &ShootDirection);
 

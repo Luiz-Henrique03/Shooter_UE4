@@ -58,6 +58,11 @@ void AGunActor::Tick(float DeltaTime)
 
 }
 
+float AGunActor::GetDamage()
+{
+	return this->Damage;
+}
+
 bool AGunActor::GunTrace(FHitResult& Hit, FVector& ShootDirection)
 {
 
