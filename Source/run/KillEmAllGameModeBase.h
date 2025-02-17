@@ -16,6 +16,12 @@ class RUN_API AKillEmAllGameModeBase : public ArunGameModeBase
 	
 public:
 	virtual void PawnKilled(APawn* PawnKilled) override;
+	UFUNCTION(BlueprintPure)
+	int GetEnemys();
 private:
 	void EndGame(bool bIsPlayerOne);
+protected:
+	UPROPERTY(BlueprintReadOnly)
+		int EnemysCount = 17;
+
 };

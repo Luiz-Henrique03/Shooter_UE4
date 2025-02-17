@@ -39,9 +39,6 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 		bool IsUnablePowerUp;
 
-	UPROPERTY(BlueprintReadWrite)
-		bool IsIncreaseDamagePressed;
-
 
 	UFUNCTION(BlueprintPure)
 	 float GetPercentHealth() const;
@@ -51,6 +48,7 @@ public:
 	void setHealth(float health);
 
 	void setDamage(float Damage);
+	float getDamage();
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -70,7 +68,7 @@ private:
 	void LooksY(float AxisValue);
 	void LooksX(float AxisValue);
 
-
+	bool IsDamageIncreasedPressed;
 
 	UPROPERTY(EditAnywhere)
 	float RotationRate = 10;

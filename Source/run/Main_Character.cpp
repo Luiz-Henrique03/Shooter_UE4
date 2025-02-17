@@ -52,18 +52,24 @@ void AMain_Character::setHealth(float health)
 
 void AMain_Character::setDamage(float Damage)
 {
-	if (IsIncreaseDamagePressed) {
+	
+	if (IncreaseDamage && !IsDamageIncreasedPressed)
+	{
+		IsDamageIncreasedPressed = true;
 		Gun->Damage += Damage;
-		IsIncreaseDamagePressed = false;
+		
 	}
+
+	
 }
+
 
 // Called every frame
 void AMain_Character::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	setDamage(20);
+	setDamage(40);
+	
 }
 
 float AMain_Character::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
@@ -71,6 +77,8 @@ float AMain_Character::TakeDamage(float DamageAmount, FDamageEvent const& Damage
 	float DamageAplied = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	DamageAplied = FMath::Min(Health, DamageAplied);
 	Health -= DamageAplied;
+
+	UE_LOG(LogTemp, Error, TEXT("Damage: %f"),DamageAplied);
 
 	if (IsDead()) {
 		AKillEmAllGameModeBase* GameMode = GetWorld()->GetAuthGameMode<AKillEmAllGameModeBase>();

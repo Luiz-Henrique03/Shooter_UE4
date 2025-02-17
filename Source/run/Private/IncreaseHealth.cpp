@@ -39,13 +39,19 @@ void UIncreaseHealth::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 void UIncreaseHealth::IncreaseHelth()
 {
 	PlayerRef = Cast<AMain_Character>(GetWorld()->GetFirstPlayerController()->GetPawn());
+	if (!PlayerRef) {
+		UE_LOG(LogTemp, Error, TEXT("PlayerRef is nullptr"));
+		return;
+	}
+
 	Ispressured();
+
 	if (this->pressed) {
 		auto HealthAux = PlayerRef->GetHealth();
-		auto health = HealthAux + 80;
+		auto health = HealthAux + 100;
 		PlayerRef->setHealth(health);
+		UE_LOG(LogTemp, Warning, TEXT("Health increased to %f"), health);
 	}
-	
 }
 
 bool UIncreaseHealth::getPressed()
@@ -56,16 +62,20 @@ bool UIncreaseHealth::getPressed()
 void UIncreaseHealth::Ispressured()
 {
 	auto Actor = GetWorld()->GetFirstPlayerController()->GetPawn();
-
 	if (!Actor) { return; }
+
+	if (!Health_plate) {
+		return;
+	}
+
 	if (Health_plate->IsOverlappingActor(Actor)) {
 		this->pressed = true;
-
+		Health_plate->Destroy();
 		OnPressurePlatePressed.Broadcast();
 	}
 	else {
 		this->pressed = false;
 	}
-	
 }
+
 

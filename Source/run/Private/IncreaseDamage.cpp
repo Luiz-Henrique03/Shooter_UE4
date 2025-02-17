@@ -15,23 +15,19 @@ UIncreaseDamage::UIncreaseDamage()
 	// ...
 }
 
-
-// Called when the game starts
-void UIncreaseDamage::BeginPlay()
+void UIncreaseDamage::IncreaseDamage()
 {
-	Super::BeginPlay();
 
-	// ...
-	
-}
+	if (IncreaseDamagePlatePressured()) 
+	{
+		PlayerRef = Cast<AMain_Character>(GetWorld()->GetFirstPlayerController()->GetPawn());
+		if (!PlayerRef) {
+			return;
+		}
+		
 
+	}
 
-// Called every frame
-void UIncreaseDamage::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
 }
 
 bool UIncreaseDamage::IncreaseDamagePlatePressured()
